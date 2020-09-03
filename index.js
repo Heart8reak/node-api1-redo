@@ -36,9 +36,20 @@ server.get('/api/users', (req, res) => {
 })
 
 //-------------------------------------------------------------
-// Update
+// Delete
 //-------------------------------------------------------------
 
+server.delete('/api/users/:id', (req, res) => {
+    const { id } = req.params
+
+    const deleted = users.find(user => user.id === id)
+    if (deleted) {
+        users = users.filter(user => user.id !== id)
+        res.status(200).json(deleted)
+    } else {
+        res.status(404).json({ message: "user not Found!" })
+    }
+})
 
 const PORT = 5000
 
