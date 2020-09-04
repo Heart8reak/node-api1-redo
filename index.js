@@ -36,6 +36,25 @@ server.get('/api/users', (req, res) => {
 })
 
 //-------------------------------------------------------------
+// Update
+//-------------------------------------------------------------
+
+server.patch('/api/users/:id', (req, res) => {
+    const { id } = req.params
+    const changes = req.body
+
+    let found = users.find(user => user.id === id)
+
+    if (found) {
+        Object.assign(found, changes)
+        res.status(200).json(found)
+    } else {
+        res.status(404).json({ message: "User ID was not found" })
+    }
+})
+
+
+//-------------------------------------------------------------
 // Delete
 //-------------------------------------------------------------
 
