@@ -1,11 +1,13 @@
 const express = require('express')
 const shortid = require('shortid')
+const cors = require('cors')
 
 const server = express()
 
 let users = []
 
 server.use(express.json())
+server.use(cors())
 
 //-------------------------------------------------------------
 // Running API
